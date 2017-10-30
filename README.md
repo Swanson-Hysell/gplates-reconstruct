@@ -3,7 +3,7 @@ A simple web interface for interacting with the `pygplates` python library. For 
 
 ### Info
 ##### Rotation model
-The following rotation model is used:
+The following rotation model is used by default:
 
 ````
 Wright, N., S. Zahirovic, R. D. Müller, and M. Seton (2013), Towards
@@ -15,7 +15,7 @@ Wright, N., S. Zahirovic, R. D. Müller, and M. Seton (2013), Towards
 ftp://ftp.earthbyte.org/papers/Wright_etal_Paleobiogeography/1_Phanerozoic_Plate_Motions_GPlates.zip
 --->
 
-It can be found [here](http://tinyurl.com/jm2s3av).
+It can be found [here](http://tinyurl.com/jm2s3av). Other rotation models are available for reconstructions as well with  available models specified in the models.json file in the repository (seton2012, shephard2013, wright2013, matthews2016, muller2016, scotese2017, merdith2017).
 
 
 ##### Plates
@@ -45,6 +45,12 @@ curl -o point100.geojson 'https://macrostrat.org/gplates/reconstruct?lng=-89&lat
 + **lng** - a valid longitude (WGS84)
 + **lat** - a valid latitude (WGS84)
 + **age** - the target reconstruction time in millions of years before present. Can be any integer between 0 and 550.
+
+#### Optional parameters
++ **model** - an alternative model can be specified as in the example below where the Müller et al., 2016 model is used.
+````
+curl -o point100.geojson 'https://macrostrat.org/gplates/reconstruct?lng=-89&lat=43&age=100&age=100&model=muller2016'
+````
 
 #### Output
 Returns a GeoJSON FeatureCollection. There will be one Feature, the input point, and it will have a property `plate_id` indicating which plate the point was assigned to.
